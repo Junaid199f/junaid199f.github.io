@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="assets/image/favicon.PNG"> 
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -20,50 +20,69 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <style>
+        :root {
+            --primary-color: #00796b;
+            --secondary-color: #004d40;
+            --background-color: #f0f4f8;
+            --text-color: #212121;
+            --muted-text-color: #757575;
+            --highlight-color: #e0f2f1;
+        }
+
         body {
-            font-family: 'Roboto', sans-serif;
-            color: #333;
-            background-color: #f8f9fa;
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
         }
 
         .main-wrapper {
             padding: 20px;
+            background-color: var(--background-color);
         }
 
         .resume-wrapper {
             background-color: #fff;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 40px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
         }
 
         .resume-header {
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid var(--highlight-color);
             margin-bottom: 20px;
         }
 
         .resume-title h2 {
-            color: #007bff;
+            color: var(--primary-color);
             font-weight: 700;
         }
 
         .resume-tagline {
-            color: #6c757d;
+            color: var(--secondary-color);
             font-style: italic;
         }
 
         .resume-contact ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         .resume-contact ul li {
             margin-bottom: 10px;
         }
 
+        .resume-contact ul li i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+
         .resume-footer {
             margin-top: 20px;
-            border-top: 1px solid #ddd;
+            border-top: 1px solid var(--highlight-color);
             padding-top: 20px;
         }
 
@@ -77,34 +96,41 @@
             margin-right: 15px;
         }
 
+        .resume-footer ul li i {
+            color: var(--primary-color);
+        }
+
         .resume-intro p {
             line-height: 1.6;
+            margin-bottom: 15px;
         }
 
         .resume-section-heading {
-            color: #343a40;
-            border-bottom: 2px solid #007bff;
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--primary-color);
             display: inline-block;
             padding-bottom: 5px;
+            margin-bottom: 20px;
         }
 
         .item-title {
             font-weight: 600;
-            color: #007bff;
+            color: var(--primary-color);
         }
 
         .resume-education-list .resume-degree {
-            font-weight: 500;
-            color: #343a40;
+            font-weight: 600;
+            color: var(--text-color);
         }
 
         .resume-education-list .resume-degree-org {
-            color: #6c757d;
+            color: var(--muted-text-color);
         }
 
         .resume-lang-list, .resume-interests-list {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         .resume-lang-list li, .resume-interests-list li {
@@ -112,7 +138,7 @@
         }
 
         a.resume-link {
-            color: #007bff;
+            color: var(--primary-color);
             text-decoration: none;
         }
 
@@ -124,6 +150,7 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
+            object-fit: cover;
         }
 
         .item img {
@@ -146,8 +173,8 @@
                     </div>
                     <div class="resume-contact col-12 col-md-6 col-lg-4 col-xl-3">
                         <ul class="list-unstyled mb-0">
-                            <li class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i>Mulhouse, France</li>
-                            <li class="mb-0"><i class="fas fa-envelope mr-2"></i><a class="resume-link" href="mailto:junaid199f@gmail.com">junaid199f@gmail.com</a></li>
+                            <li class="mb-2"><i class="fas fa-map-marker-alt"></i>Mulhouse, France</li>
+                            <li class="mb-0"><i class="fas fa-envelope"></i><a class="resume-link" href="mailto:junaid199f@gmail.com">junaid199f@gmail.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -193,27 +220,43 @@
                                 </div>
                             </div>
                         </section>
-                        <!-- More sections go here (Projects, Skills, etc.) -->
+                        <hr>
+                        
+                        <!-- Projects Section -->
+                        <section class="project-section py-4">
+                            <h3 class="text-uppercase resume-section-heading mb-4">Projects</h3>
+                            <div class="item mb-3">
+                                <h4 class="item-title">Project Title</h4>
+                                <div class="item-content">
+                                    <ul>
+                                        <li>Project description goes here...</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
                     </div>
+
                     <aside class="resume-aside col-12 col-lg-4 col-xl-3 px-lg-4 pb-lg-4">
-                        <!-- Education Section -->
                         <section class="education-section py-4">
                             <h3 class="text-uppercase resume-section-heading mb-4">Education</h3>
                             <ul class="list-unstyled resume-education-list">
                                 <li class="mb-3">
-                                    <div class="resume-degree font-weight-bold">Ph.D., Data Science</div>
+                                    <div class="resume-degree font-weight-bold">Ph.D. in Computer Science</div>
                                     <div class="resume-degree-org text-muted">University of Haute Alsace</div>
-                                    <div class="resume-degree-time">2021 - Present</div>
+                                    <div class="resume-degree-time text-muted">2021 - Present</div>
                                 </li>
-                                <!-- More education items go here -->
                             </ul>
                         </section>
-                        <!-- More sections go here (Languages, Interests, etc.) -->
+                        
+                        <hr>
+
+                        <!-- More sections can be added here, such as Languages, Skills, etc. -->
                     </aside>
                 </div>
             </div>
         </article>
     </div>
 </div>
+
 </body>
 </html>
