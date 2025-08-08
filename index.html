@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,20 +9,25 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧪</text></svg>">
   <style>
     :root{
-      /* keep a calm academic palette similar to the original minimal style */
       --bg: #ffffff; 
       --fg: #0a0a0a; 
       --muted:#4b5563; 
       --card:#f7f7f7;
-      --brand:#1f2937; /* deep gray-blue header text */
-      --accent:#2563eb; /* link / accent */
+      --brand:#1f2937;
+      --accent:#2563eb;
       --link:#2563eb;
       --ring: 0 0 0 3px rgba(37, 99, 235, 0.35);
     }
-    @media (prefers-color-scheme: dark){
-      :root{
-        --bg:#0b0c10; --fg:#e5e7eb; --muted:#9aa4b2; --card:#161821; --brand:#e5e7eb; --link:#8ab4f8;
-      }
+    /* Dark theme overrides when [data-theme="dark"] */
+    [data-theme="dark"]{
+      --bg:#0b0c10; 
+      --fg:#e5e7eb; 
+      --muted:#9aa4b2; 
+      --card:#161821; 
+      --brand:#e5e7eb; 
+      --link:#8ab4f8;
+      --accent:#8ab4f8;
+      --ring: 0 0 0 3px rgba(138, 180, 248, 0.35);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -31,10 +36,12 @@
     a:hover{text-decoration:underline}
     .container{max-width:980px; margin:0 auto; padding:0 20px}
     header{padding:28px 0 10px; border-bottom:1px solid rgba(0,0,0,.08)}
+    [data-theme="dark"] header{border-bottom-color: rgba(255,255,255,.08);}
     h1{margin:0; font-size:clamp(26px,3.6vw,40px); color:var(--brand); line-height:1.1}
     .subtitle{color:var(--muted); margin:6px 0 0}
     .meta{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; color:var(--muted)}
     .chip{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:rgba(0,0,0,.05)}
+    [data-theme="dark"] .chip{background:rgba(255,255,255,.08)}
     .nav{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px}
     .nav a{padding:6px 10px; border-radius:8px}
     .nav a:focus{outline:none; box-shadow:var(--ring)}
@@ -45,8 +52,10 @@
     .grid.cols-3{grid-template-columns:repeat(3, minmax(0,1fr))}
     @media (max-width:900px){.grid.cols-2,.grid.cols-3{grid-template-columns:1fr}}
     .card{background:var(--card); border:1px solid rgba(0,0,0,.06); border-radius:12px; padding:14px}
+    [data-theme="dark"] .card{border-color: rgba(255,255,255,.08)}
     .list-tight li{margin-bottom:8px}
     footer{border-top:1px solid rgba(0,0,0,.08); padding:24px 0 48px; color:var(--muted)}
+    [data-theme="dark"] footer{border-top-color: rgba(255,255,255,.08);}
     .topbar{display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap}
     .btn{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border-radius:10px; background:var(--accent); color:white; font-weight:600; border:none}
     .btn:hover{filter:saturate(1.05)}
@@ -54,6 +63,8 @@
     .muted{color:var(--muted)}
     .kpis{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
     .kpi{padding:10px 12px; border-radius:10px; background:rgba(0,0,0,.05)}
+    [data-theme="dark"] .kpi{background:rgba(255,255,255,.08)}
+    .theme-toggle{cursor:pointer}
   </style>
 </head>
 <body>
@@ -77,6 +88,7 @@
         </div>
       </div>
       <div class="right-rail">
+        <button id="themeBtn" class="chip theme-toggle" aria-pressed="false" title="Toggle light/dark">🌓 Theme</button>
         <a class="btn" href="#contact">Contact</a>
         <a class="btn" href="https://github.com/junaid199f" target="_blank" rel="noopener">GitHub</a>
       </div>
@@ -290,12 +302,45 @@
   <footer>
     <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap">
       <div>© <span id="year"></span> Muhammad Junaid Ali</div>
-      <div><a class="chip" href="#top">Back to top ↑</a></div>
+      <div style="display:flex; gap:10px; align-items:center">
+        <button id="themeBtnFooter" class="chip theme-toggle" aria-pressed="false" title="Toggle light/dark">🌓 Theme</button>
+        <a class="chip" href="#top">Back to top ↑</a>
+      </div>
     </div>
   </footer>
 
   <script>
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme logic with persistence
+    const root = document.documentElement;
+    const STORAGE_KEY = 'theme-v1';
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    function getInitialTheme(){
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === 'light' || saved === 'dark') return saved;
+      return prefersDark ? 'dark' : 'light';
+    }
+
+    function applyTheme(theme){
+      root.setAttribute('data-theme', theme);
+      const pressed = theme === 'dark';
+      document.querySelectorAll('.theme-toggle').forEach(btn => btn.setAttribute('aria-pressed', pressed));
+    }
+
+    function toggleTheme(){
+      const current = root.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      localStorage.setItem(STORAGE_KEY, next);
+      applyTheme(next);
+    }
+
+    // Init and bind
+    applyTheme(getInitialTheme());
+    document.getElementById('themeBtn')?.addEventListener('click', toggleTheme);
+    document.getElementById('themeBtnFooter')?.addEventListener('click', toggleTheme);
   </script>
 </body>
 </html>
