@@ -35,8 +35,18 @@
     a{color:var(--link); text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:980px; margin:0 auto; padding:0 20px}
-    header{padding:28px 0 10px; border-bottom:1px solid rgba(0,0,0,.08)}
+    header{
+      padding: 28px 0 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(0, 0, 0, 0.5); /* Transparent background */
+      transition: background 0.3s ease;
+    }
+    [data-theme="dark"] header{
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.5); /* Transparent background for dark mode */
+    }
     [data-theme="dark"] header{border-bottom-color: rgba(255,255,255,.08);}
+
     h1{margin:0; font-size:clamp(26px,3.6vw,40px); color:var(--brand); line-height:1.1}
     .subtitle{color:var(--muted); margin:6px 0 0}
     .meta{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; color:var(--muted)}
@@ -65,17 +75,6 @@
     .kpi{padding:10px 12px; border-radius:10px; background:rgba(0,0,0,.05)}
     [data-theme="dark"] .kpi{background:rgba(255,255,255,.08)}
     .theme-toggle{cursor:pointer}
-    header {
-  padding: 28px 0 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  background: rgba(0, 0, 0, 0.5); /* Transparent background */
-  transition: background 0.3s ease;
-}
-
-[data-theme="dark"] header {
-  border-bottom-color: rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.5); /* Transparent background for dark mode */
-}
   </style>
 </head>
 <body>
@@ -320,6 +319,17 @@
     </div>
   </footer>
 
+ 
+  <footer>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap">
+      <div>© <span id="year"></span> Muhammad Junaid Ali</div>
+      <div style="display:flex; gap:10px; align-items:center">
+        <button id="themeBtnFooter" class="chip theme-toggle" aria-pressed="false" title="Toggle light/dark">🌓 Theme</button>
+        <a class="chip" href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
   <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -352,6 +362,20 @@
     applyTheme(getInitialTheme());
     document.getElementById('themeBtn')?.addEventListener('click', toggleTheme);
     document.getElementById('themeBtnFooter')?.addEventListener('click', toggleTheme);
+
+    // Scroll effect for header transparency
+    const header = document.querySelector('header');
+
+    function handleScroll() {
+      if (window.scrollY > 50) {
+        header.style.background = 'rgba(0, 0, 0, 0.9)'; // Solid background after scrolling
+      } else {
+        header.style.background = 'rgba(0, 0, 0, 0.5)'; // Semi-transparent background before scrolling
+      }
+    }
+
+    // Listen for scroll event
+    window.addEventListener('scroll', handleScroll);
   </script>
 </body>
 </html>
