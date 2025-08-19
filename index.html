@@ -1,169 +1,76 @@
 <!DOCTYPE html>
+<html lang="en">
 <html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Muhammad Junaid Ali — Portfolio</title>
-  <meta name="description" content="Data Scientist & Healthcare AI Developer — PhD Research Scholar at Université de Haute-Alsace (IRIMAS).">
-  <meta name="color-scheme" content="light dark">
+@@ -9,20 +9,25 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧪</text></svg>">
-    <style>
-    :root {
-      --bg: #ffffff;
-      --fg: #0a0a0a;
-      --muted: #4b5563;
-      --card: #f7f7f7;
-      --brand: #1f2937;
-      --accent: #2563eb;
-      --link: #2563eb;
+  <style>
+    :root{
+      /* keep a calm academic palette similar to the original minimal style */
+      --bg: #ffffff; 
+      --fg: #0a0a0a; 
+      --muted:#4b5563; 
+      --card:#f7f7f7;
+      --brand:#1f2937; /* deep gray-blue header text */
+      --accent:#2563eb; /* link / accent */
+      --brand:#1f2937;
+      --accent:#2563eb;
+      --link:#2563eb;
       --ring: 0 0 0 3px rgba(37, 99, 235, 0.35);
     }
-
-    /* Dark theme overrides */
-    [data-theme="dark"] {
-      --bg: #0b0c10;
-      --fg: #e5e7eb;
-      --muted: #9aa4b2;
-      --card: #161821;
-      --brand: #e5e7eb;
-      --link: #8ab4f8;
-      --accent: #8ab4f8;
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0b0c10; --fg:#e5e7eb; --muted:#9aa4b2; --card:#161821; --brand:#e5e7eb; --link:#8ab4f8;
+      }
+    /* Dark theme overrides when [data-theme="dark"] */
+    [data-theme="dark"]{
+      --bg:#0b0c10; 
+      --fg:#e5e7eb; 
+      --muted:#9aa4b2; 
+      --card:#161821; 
+      --brand:#e5e7eb; 
+      --link:#8ab4f8;
+      --accent:#8ab4f8;
       --ring: 0 0 0 3px rgba(138, 180, 248, 0.35);
     }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif;
-      color: var(--fg);
-      background: var(--bg);
-    }
-
-    a {
-      color: var(--link);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .container {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    header {
-      padding: 28px 0 10px;
-      border-bottom: 1px solid rgba(0, 0, 0, .08);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 100;
-      transition: background-color 0.3s ease-in-out;
-    }
-
-    .topbar {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    header[data-theme="dark"] {
-      border-bottom-color: rgba(255, 255, 255, .08);
-    }
-
-    .topbar {
-      background-color: rgba(0, 0, 0, 0); /* Transparent */
-    }
-
-    .nav {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-
-    .nav a {
-      padding: 6px 10px;
-      border-radius: 8px;
-    }
-
-    .nav a:focus {
-      outline: none;
-      box-shadow: var(--ring);
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid rgba(0, 0, 0, .06);
-      border-radius: 12px;
-      padding: 14px;
-    }
-
-    [data-theme="dark"] .card {
-      border-color: rgba(255, 255, 255, .08);
-    }
-
-    footer {
-      border-top: 1px solid rgba(0, 0, 0, .08);
-      padding: 24px 0 48px;
-      color: var(--muted);
-    }
-
-    .theme-toggle {
-      cursor: pointer;
-    }
-
-    /* Profile Section */
-    #profile {
-      padding-top: 120px;
-      text-align: center;
-    }
-
-    #profile img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-    }
-
-    /* Scroll effect for Topbar */
-    window.addEventListener('scroll', function () {
-      const topbar = document.querySelector('.topbar');
-      if (window.scrollY > 50) {
-        topbar.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-      } else {
-        topbar.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-      }
-    });
-
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+@@ -31,10 +36,12 @@
+    a:hover{text-decoration:underline}
+    .container{max-width:980px; margin:0 auto; padding:0 20px}
+    header{padding:28px 0 10px; border-bottom:1px solid rgba(0,0,0,.08)}
+    [data-theme="dark"] header{border-bottom-color: rgba(255,255,255,.08);}
+    h1{margin:0; font-size:clamp(26px,3.6vw,40px); color:var(--brand); line-height:1.1}
+    .subtitle{color:var(--muted); margin:6px 0 0}
+    .meta{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; color:var(--muted)}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:rgba(0,0,0,.05)}
+    [data-theme="dark"] .chip{background:rgba(255,255,255,.08)}
+    .nav{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px}
+    .nav a{padding:6px 10px; border-radius:8px}
+    .nav a:focus{outline:none; box-shadow:var(--ring)}
+@@ -45,15 +52,19 @@
+    .grid.cols-3{grid-template-columns:repeat(3, minmax(0,1fr))}
+    @media (max-width:900px){.grid.cols-2,.grid.cols-3{grid-template-columns:1fr}}
+    .card{background:var(--card); border:1px solid rgba(0,0,0,.06); border-radius:12px; padding:14px}
+    [data-theme="dark"] .card{border-color: rgba(255,255,255,.08)}
+    .list-tight li{margin-bottom:8px}
+    footer{border-top:1px solid rgba(0,0,0,.08); padding:24px 0 48px; color:var(--muted)}
+    [data-theme="dark"] footer{border-top-color: rgba(255,255,255,.08);}
+    .topbar{display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap}
+    .btn{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border-radius:10px; background:var(--accent); color:white; font-weight:600; border:none}
+    .btn:hover{filter:saturate(1.05)}
+    .right-rail{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .muted{color:var(--muted)}
+    .kpis{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .kpi{padding:10px 12px; border-radius:10px; background:rgba(0,0,0,.05)}
+    [data-theme="dark"] .kpi{background:rgba(255,255,255,.08)}
+    .theme-toggle{cursor:pointer}
   </style>
 </head>
 <body>
-  <header class="container">
-    <div class="topbar">
-      <div>
-        <h1>Muhammad Junaid Ali</h1>
-        <p class="subtitle">Data Scientist — Healthcare AI Developer</p>
-        <div class="meta">
-          <span class="chip">Mulhouse, France</span>
-          <a class="chip" href="mailto:junaid199f@gmail.com">junaid199f@gmail.com</a>
-          <a class="chip" href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a>
-          <a class="chip" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="chip" href="https://www.researchgate.net" target="_blank" rel="noopener">ResearchGate</a>
-          <a class="chip" href="https://github.com/junaid199f" target="_blank" rel="noopener">GitHub</a>
-          <a class="chip" href="#" download>CV Download</a>
-        </div>
-        <div class="kpis">
-          <div class="kpi"><strong>PhD Scholar</strong> — IRIMAS (UHA)</div>
-          <div class="kpi">Medical Imaging • AutoML • NAS</div>
+@@ -77,6 +88,7 @@ <h1>Muhammad Junaid Ali</h1>
         </div>
       </div>
       <div class="right-rail">
@@ -171,216 +78,11 @@
         <a class="btn" href="#contact">Contact</a>
         <a class="btn" href="https://github.com/junaid199f" target="_blank" rel="noopener">GitHub</a>
       </div>
-    </div>
-    <nav class="nav" aria-label="Sections">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#publications">Publications</a>
-      <a href="#education">Education</a>
-      <a href="#awards">Awards</a>
-      <a href="#languages">Languages</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <main class="container">
-    <section id="about">
-      <h2>About</h2>
-      <div class="grid cols-2">
-        <div class="card">
-          <p>I am a third-year PhD research scholar at the IRIMAS Lab, Université de Haute-Alsace (UHA), Mulhouse, France. Previously, I worked at Gomal University and Virtual University of Pakistan as a Tutor/Instructor teaching multiple computer science courses.</p>
-          <p>Before that, I was a research assistant at the Medical Imaging and Diagnostics (MID) Lab, where I proposed approaches for brain tumor segmentation, survival prediction, and breast pectoral muscle segmentation.</p>
-        </div>
-        <div class="card">
-          <strong>Focus</strong>
-          <ul class="list-tight">
-            <li>AutoML & Neural Architecture Search (2D/3D)</li>
-            <li>Medical image classification & segmentation</li>
-            <li>Robust NAS and multi-objective optimization</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <h2>Work Experience</h2>
-      <div class="card">
-        <h3>Ph.D. Research Scholar — <a href="https://www.irimas.uha.fr" target="_blank" rel="noopener">UHA</a> <span class="muted">| Dec 2021 – Dec 2024</span></h3>
-        <ul class="list-tight">
-          <li>Designed AutoML approaches for medical image analysis.</li>
-          <li>Proposed NAS methods for 2D/3D segmentation and classification.</li>
-          <li>Developed robust NAS against adversarial attacks.</li>
-          <li>Formulated multi-objective NAS for lightweight architectures.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="skills">
-      <h2>Technical Skills</h2>
-      <div class="grid cols-3">
-        <div class="card"><strong>Data Science</strong><br><span class="muted">A/B testing, optimization, big data pipeline (cleansing, wrangling, visualization, modeling, interpretation), AutoML, Image Processing</span></div>
-        <div class="card"><strong>Medical Imaging</strong><br><span class="muted">MONAI, nnUNet, nibabel, pydicom</span></div>
-        <div class="card"><strong>Web</strong><br><span class="muted">Flask</span></div>
-        <div class="card"><strong>Programming</strong><br><span class="muted">Python (Pandas, scikit-learn, pytest, TensorFlow, PyTorch, SciPy, NLTK, Gensim), SQL, R, C++, Java</span></div>
-        <div class="card"><strong>Cloud & Big Data</strong><br><span class="muted">AWS (SageMaker, ECR, EMR, S3, Redshift), Spark, Databricks, Airflow</span></div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="grid cols-2">
-        <div class="card">
-          <h3>Evolutionary NAS for 2D/3D Medical Image Classification</h3>
-          <p>Proposed an evolutionary NAS approach for medical image classification and a comparative study of multiple metaheuristics.</p>
-          <p><a href="https://www.iccs-meeting.org" target="_blank" rel="noopener">More details</a></p>
-        </div>
-        <div class="card">
-          <h3>Robust NAS Using Differential Evolution for Medical Images</h3>
-          <p>DE-based NAS with attention-rich search space across convolution and pooling operations.</p>
-          <p><a href="https://link.springer.com" target="_blank" rel="noopener">More details</a></p>
-        </div>
-        <div class="card">
-          <h3>Tashkhees (Breast Cancer AI Diagnostic App)</h3>
-          <p>Integrated segmentation AI modules and built a Flask frontend for clinical workflow.</p>
-          <p><a href="https://link.springer.com" target="_blank" rel="noopener">More details</a></p>
-        </div>
-        <div class="card">
-          <h3>CNNs via Surrogate-Assisted GA</h3>
-          <p>Search of CNN architectures for medical image classification using surrogate models.</p>
-          <p><a href="https://dl.acm.org" target="_blank" rel="noopener">More details</a></p>
-        </div>
-        <div class="card">
-          <h3>Brain Tumor Segmentation & Survival Prediction</h3>
-          <p>DL pipeline for segmentation and survival prediction; ranked in BraTS 2020.</p>
-          <p><a href="https://link.springer.com" target="_blank" rel="noopener">More details</a> · <a href="https://www.med.upenn.edu" target="_blank" rel="noopener">Challenge Ranking</a></p>
-        </div>
-        <div class="card">
-          <h3>Hardware-Aware NAS (NSGA-II)</h3>
-          <p>Multi-objective NAS for lightweight medical imaging architectures. <em>Under review</em>.</p>
-        </div>
-        <div class="card">
-          <h3>Training-Free U-Net for Retinal Vessel Segmentation</h3>
-          <p>NAS for U-Net shaped architectures. <em>Under review</em>.</p>
-          <p><a href="https://ea2024.inria.fr" target="_blank" rel="noopener">More details</a></p>
-        </div>
-      </div>
-    </section>
-
-    <section id="publications">
-      <h2>Selected Publications</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Review of AutoML Optimization Techniques for Medical Image Applications</h3>
-          <p class="muted">Computerized Medical Imaging and Graphics</p>
-        </div>
-        <div class="card">
-          <h3>Multi-task learning architecture for brain tumor detection and segmentation in MRI images</h3>
-          <p class="muted">Journal of Electronic Imaging 31(5), 2022</p>
-        </div>
-        <div class="card">
-          <h3>Multi-level Kronecker CNN (ML-KCNN) for Gliomas Segmentation from Multi-Modal MRI</h3>
-          <p class="muted">Journal of Digital Imaging</p>
-        </div>
-        <div class="card">
-          <h3>Enhancing breast pectoral muscle segmentation using skip connections in FCN</h3>
-          <p class="muted">Int J Imaging Syst Technol, 2020</p>
-        </div>
-        <div class="card">
-          <h3>U-Net Based Glioblastoma Segmentation with OS Prediction</h3>
-          <p class="muted">Intl. Symposium on Intelligent Computing Systems, 2020</p>
-        </div>
-        <div class="card">
-          <h3>Designing CNNs with Surrogate-Assisted GA for Medical Image Classification</h3>
-          <p class="muted">GECCO 2023</p>
-        </div>
-        <div class="card">
-          <h3>Evolutionary NAS for 2D/3D Medical Image Classification</h3>
-          <p class="muted">ICCS 2024</p>
-        </div>
-        <div class="card">
-          <h3>Robust NAS using Differential Evolution for Medical Images</h3>
-          <p class="muted">EVOAPPS 2024</p>
-        </div>
-      </div>
-      <p class="muted">Full list available on Google Scholar.</p>
-    </section>
-
-    <section id="education">
-      <h2>Education</h2>
-      <div class="grid cols-2">
-        <div class="card">
-          <strong>Ph.D. in Computer Science</strong><br/>
-          Université de Haute Alsace — 2021–Present
-        </div>
-        <div class="card">
-          <strong>MS Computer Science</strong><br/>
-          COMSATS University Islamabad — 2018–2020
-        </div>
-        <div class="card">
-          <strong>BS Computer Science</strong><br/>
-          National University of Computer and Emerging Sciences — 2013–2017
-        </div>
-      </div>
-    </section>
-
-    <section id="awards">
-      <h2>Awards</h2>
-      <div class="grid cols-2">
-        <div class="card">
-          <strong>BraTS 2020 Overall Survival Prediction — 3rd Place</strong><br/>
-          <span class="muted">MICCAI Society — Intel monetary award (2020)</span><br/>
-          <a href="https://www.med.upenn.edu" target="_blank" rel="noopener">BRATS 2020 Challenge</a>
-        </div>
-        <div class="card">
-          <strong>100% Ph.D. Scholarship</strong><br/>
-          University of Upper Alsace (2021–2024)
-        </div>
-        <div class="card">
-          <strong>100% BS Scholarship</strong><br/>
-          National University of Computer and Emerging Sciences (2013–2017)
-        </div>
-      </div>
-    </section>
-
-    <section id="languages">
-      <h2>Languages</h2>
-      <div class="grid cols-3">
-        <div class="card"><strong>English</strong><br/><span class="muted">Fluent (PhD studies in English)</span></div>
-        <div class="card"><strong>French</strong><br/><span class="muted">A1</span></div>
-        <div class="card"><strong>Urdu</strong><br/><span class="muted">National Language</span></div>
-        <div class="card"><strong>Punjabi</strong><br/><span class="muted">Native</span></div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="grid cols-2">
-        <div class="card">
-          <p>The best way to reach me is email. I'm open to collaborations and applied AI projects in medical imaging.</p>
-          <ul>
-            <li><strong>Email:</strong> <a href="mailto:junaid199f@gmail.com">junaid199f@gmail.com</a></li>
-            <li><strong>GitHub:</strong> <a href="https://github.com/junaid199f" target="_blank" rel="noopener">github.com/junaid199f</a></li>
-            <li><strong>Scholar:</strong> <a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a></li>
-            <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
-          </ul>
-        </div>
-        <form class="card" onsubmit="event.preventDefault(); alert('Thanks! Wire this to Formspree or a serverless endpoint.');">
-          <label for="msg" class="sr-only">Message</label>
-          <textarea id="msg" rows="5" placeholder="Quick message…" style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(0,0,0,.12); background:transparent; color:inherit"></textarea>
-          <div style="margin-top:10px; display:flex; gap:10px; align-items:center; justify-content:flex-end">
-            <button class="btn" type="submit">Send</button>
-          </div>
-          <p class="muted" style="margin-top:10px">You can connect this form to Formspree/Basin or a serverless function.</p>
-        </form>
-      </div>
-    </section>
-  </main>
-
+@@ -290,12 +302,45 @@ <h2>Contact</h2>
   <footer>
     <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap">
       <div>© <span id="year"></span> Muhammad Junaid Ali</div>
+      <div><a class="chip" href="#top">Back to top ↑</a></div>
       <div style="display:flex; gap:10px; align-items:center">
         <button id="themeBtnFooter" class="chip theme-toggle" aria-pressed="false" title="Toggle light/dark">🌓 Theme</button>
         <a class="chip" href="#top">Back to top ↑</a>
