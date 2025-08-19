@@ -65,6 +65,17 @@
     .kpi{padding:10px 12px; border-radius:10px; background:rgba(0,0,0,.05)}
     [data-theme="dark"] .kpi{background:rgba(255,255,255,.08)}
     .theme-toggle{cursor:pointer}
+    header {
+  padding: 28px 0 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.5); /* Transparent background */
+  transition: background 0.3s ease;
+}
+
+[data-theme="dark"] header {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.5); /* Transparent background for dark mode */
+}
   </style>
 </head>
 <body>
